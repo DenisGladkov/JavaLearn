@@ -18,7 +18,7 @@ public class Main {
     }
 
     //сумма элементов массива
-    private void sum_mas() {
+    private void SumMas() {
         int sum = 0;
         for (int i=0; i<mas.length; i++){
             sum += mas[i];
@@ -27,7 +27,7 @@ public class Main {
     }
 
     //максимамальный элемент массива
-    private void max_mas(){
+    private void MaxMas(){
         int max=mas[0];
         for(int i=0; i<mas.length; i++){
             if (mas[i]>max){
@@ -38,7 +38,7 @@ public class Main {
     }
 
     //минимальный элемент массива
-    private void min_mas(){
+    private void MinMas(){
         int min=mas[0];
         for(int i=0; i<mas.length; i++){
             if (mas[i]<min){
@@ -62,7 +62,7 @@ public class Main {
     }
 
     //Quick Sort
-    private void QuickSort(int[] mas, int start, int end) {
+    /*private void QuickSort(int[] mas, int start, int end) {
         int i = start;
         int j = end;
         int opora = mas[start + (end - start) / 2];
@@ -80,8 +80,40 @@ public class Main {
 
         if (start < j) QuickSort(mas, start, j);
         if (i < end) QuickSort(mas, i, end);
+    }*/
+
+    //Bubble Sort
+    private void BubbleSort(){
+        int tmp;
+        for(int i= 1; i< mas.length; i++){
+            for(int j=mas.length-1; j >= i; j--) {
+                if(mas[j-1] > mas[j]) {
+                    tmp = mas[j - 1];
+                    mas[j - 1] = mas[j];
+                    mas[j] = tmp;
+                }
+            }
+        }
     }
 
+    //Бинарный поиск
+    private static int BinarySearch(int value, int arr[]) {
+        int left = 0;
+        int right = arr.length;
+
+        while(left < right) {
+            int mid = (left + right)/2;
+            if (arr[mid] == value) {
+                return mid;
+            }
+            if (arr[mid] > value) {
+                right = mid;
+            } else if(arr[mid] < value) {
+                left = mid + 1;
+            }
+        }
+        return -1;
+    }
 
         public static void main (String[]args){
             Main a=new Main();
@@ -90,15 +122,25 @@ public class Main {
 
             //a.mas_create();
             a.ShowMas();
-            a.sum_mas();
-            a.max_mas();
-            a.min_mas();
-            //a.SortMas();
-            //System.out.println("Отсортированный массив по возрастанию: ");
+            a.SumMas();
+            a.MaxMas();
+            a.MinMas();
+
+            a.SortMas();
+            System.out.println("Отсортированный массив по возрастанию: ");
             a.ShowMas();
 
-            System.out.println("Отсортированный массив по QuickSort: ");
-            a.QuickSort(mas, start, end);
+            //System.out.println("Отсортированный массив по QuickSort: ");
+            //a.QuickSort(mas, start, end);
+            //a.ShowMas();
+
+            //System.out.println("Отсортированный массив методом BubbleSort: ");
+            //a.BubbleSort();
+            //a.ShowMas();
+
+            System.out.println("Бинарный поиск: ");
+            a.BinarySearch(3, mas);
             a.ShowMas();
+
         }
     }
