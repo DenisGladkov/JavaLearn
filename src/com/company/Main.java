@@ -1,14 +1,16 @@
 package com.company;
 
 public class Main {
-    //private static int mas[] = new int[11];
-    private static int mas[]={3, 6,9,56,78,25,1,0,3,7};
+    private static int mas[] = new int[11];
+    //private static int mas[]={3, 6,9,56,78,25,1,0,3,7};
+
+
     //заполнение массива случайными числами
-    /*private void mas_create() {
+    private void MasCreate() {
         for (int i = 0; i < mas.length; i++) {
             mas[i] = (int) (Math.random() * 100);
         }
-    }*/
+    }
 
     //вывод массива
     private void ShowMas(){
@@ -62,7 +64,7 @@ public class Main {
     }
 
     //Quick Sort
-    /*private void QuickSort(int[] mas, int start, int end) {
+    private void QuickSort(int[] mas, int start, int end) {
         int i = start;
         int j = end;
         int opora = mas[start + (end - start) / 2];
@@ -80,7 +82,7 @@ public class Main {
 
         if (start < j) QuickSort(mas, start, j);
         if (i < end) QuickSort(mas, i, end);
-    }*/
+    }
 
     //Bubble Sort
     private void BubbleSort(){
@@ -97,7 +99,7 @@ public class Main {
     }
 
     //Бинарный поиск
-    private static int BinarySearch(int value, int arr[]) {
+    private int BinarySearch(int value, int arr[]) {
         int left = 0;
         int right = arr.length;
 
@@ -115,12 +117,47 @@ public class Main {
         return -1;
     }
 
+    //Сортировка слиянием
+    private void MergeSort() {
+        int[] a1 = new int[]{1,2,3,4,5,6,7,8,9,10};
+        int[] a2 = new int[]{11,11,13,19,69,37,51};
+        int[] a3 = new int[a1.length + a2.length];
+
+        int i = 0, j = 0;
+        for (int k = 0; k < a3.length; k++) {
+
+            if (i > a1.length - 1) {
+                int a = a2[j];
+                a3[k] = a;
+                j++;
+            } else if (j > a2.length - 1) {
+                int a = a1[i];
+                a3[k] = a;
+                i++;
+            } else if (a1[i] < a2[j]) {
+                int a = a1[i];
+                a3[k] = a;
+                i++;
+            } else {
+                int b = a2[j];
+                a3[k] = b;
+                j++;
+            }
+        }
+        for (int k = 0; k < a3.length; k++) {
+            System.out.println(a3[k]+" ");
+        }
+
+
+    }
+
+
         public static void main (String[]args){
             Main a=new Main();
             int start = 0;
             int end = mas.length - 1;
 
-            //a.mas_create();
+            a.MasCreate();
             a.ShowMas();
             a.SumMas();
             a.MaxMas();
@@ -130,17 +167,20 @@ public class Main {
             System.out.println("Отсортированный массив по возрастанию: ");
             a.ShowMas();
 
-            //System.out.println("Отсортированный массив по QuickSort: ");
-            //a.QuickSort(mas, start, end);
-            //a.ShowMas();
+            System.out.println("Отсортированный массив по QuickSort: ");
+            a.QuickSort(mas, start, end);
+            a.ShowMas();
 
-            //System.out.println("Отсортированный массив методом BubbleSort: ");
-            //a.BubbleSort();
-            //a.ShowMas();
+            System.out.println("Отсортированный массив методом BubbleSort: ");
+            a.BubbleSort();
+            a.ShowMas();
 
             System.out.println("Бинарный поиск: ");
             a.BinarySearch(4, mas);
             a.ShowMas();
+
+            System.out.println("Merge Sort: ");
+            a.MergeSort();
 
         }
     }
