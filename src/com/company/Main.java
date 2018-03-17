@@ -139,7 +139,7 @@ public class Main {
             //a.ShowMas();
 
             System.out.println("Бинарный поиск: ");
-            a.BinarySearch(3, mas);
+            a.BinarySearch(4, mas);
             a.ShowMas();
 
         }
